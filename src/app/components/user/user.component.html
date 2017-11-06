@@ -1,0 +1,41 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h2 class="page-header">{{name}}</h2>
+<p><strong>Email : </strong>{{email}}</p>
+<p><strong>Address : </strong>{{address.street}} , {{address.city}}, {{address.country}}</p>
+
+<button (click)="onShowHobbyClick()" class="btn btn-primary"> {{showHobby ? "Hide Hobbies":"Show Hobbies"}} </button>
+<div *ngIf=showHobby>
+  <strong>Hobies : </strong>
+  <ul>
+    <li *ngFor="let hobby of hobbies, let i=index">
+      {{hobby}} <button (click)="removeHobby(i)">X</button> 
+    </li>
+    <form (submit)="addHobby(hobby.value)">
+      <label>Add Hobby</label>
+      <input type="text" #hobby/>
+    </form>
+  </ul>
+</div>
+
+<hr>
+<br>
+<form>
+  <label>Name</label>
+  <input type="text" name="name" [(ngModel)]="name" class="form-control" /><br>
+  <label>Email</label>
+  <input type="text" name="email" [(ngModel)]="email" class="form-control" /><br>
+  <label>Stree</label>
+  <input type="text" name="address.street" [(ngModel)]="address.street" class="form-control" /><br>
+  <label>City</label>
+  <input type="text" name="address.city" [(ngModel)]="address.city" class="form-control" /><br>
+  <label>Country</label>
+  <input type="text" name="address.country" [(ngModel)]="address.country" class="form-control" /><br>
+</form>
+
+<hr>
+
+<h3>Posts</h3>
+<div *ngFor="let post of posts">
+  <h3>{{post.title}}</h3>
+  <p>{{post.body}}</p>
+</div>
